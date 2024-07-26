@@ -31,6 +31,7 @@
                 <th scope="col" class="px-6 py-3">Harga Beli</th>
                 <th scope="col" class="px-6 py-3">Harga Jual</th> <!-- Added Harga Barang column -->
                 <th scope="col" class="px-6 py-3">Stock Barang</th>
+                <th scope="col" class="px-6 py-3">Stock Minimum</th>
                 <th scope="col" class="px-6 py-3">Actions</th>
             </tr>
         </thead>
@@ -42,6 +43,7 @@
                     <td class="px-6 py-4"><?= number_format($item['harga_beli'], 0, ',', '.') ?></td> <!-- Display Harga Beli -->
                     <td class="px-6 py-4"><?= number_format($item['harga_jual'], 0, ',', '.') ?></td> <!-- Display Harga Beli -->
                     <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
+                    <td class="px-6 py-4"><?= $item['stok_min'] ?></td>
                     <td class="flex items-center px-6 py-4">
                         <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal('in', '<?= $item['id'] ?>', '<?= $item['nama_barang'] ?>', '<?= $item['harga_beli'] ?>', '<?= $item['harga_jual'] ?>')">In</button>
                         <button class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3" onclick="openModal('out', '<?= $item['id'] ?>', '<?= $item['nama_barang'] ?>', '<?= $item['harga_beli'] ?>', '<?= $item['harga_jual'] ?>')">Out</button>
@@ -54,63 +56,63 @@
 
 <!-- Modal -->
 <div id="transactionModal" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg w-96">
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg max-w-3xl">
         <h2 id="modalTitle" class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4"></h2>
         <form action="<?= base_url('transaksi/processTransaction') ?>" method="post">
             <?= csrf_field() ?>
-            <input type="hidden" id="id" name="id">
-            <input type="hidden" id="nama_barang" name="nama_barang">
-            <input type="hidden" id="harga_barang" name="harga_barang"> <!-- New Hidden Field for Harga Barang -->
-            <input type="hidden" id="jenis" name="jenis">
-            <div class="mb-4">
-                <label for="jumlah" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Qty</label>
-                <input type="number" id="jumlah" name="jumlah" oninput="calculateTotal()" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
-            <div class="mb-4">
-                <label for="harga_barang_display" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Harga Barang</label>
-                <input type="text" id="harga_barang_display" name="harga_barang_display" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Harga Barang as readonly -->
-            </div>
-            <div class="mb-4">
-                <label for="total_harga" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Total Harga</label>
-                <input type="text" id="total_harga" name="total_harga" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Total Harga as readonly -->
-            </div>
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Admin</label>
-                <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
-            <div class="mb-4">
-                <label for="purpose" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Deskripsi</label>
-                <input type="text" id="purpose" name="purpose" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
-            <div class="mb-4">
-                <div id="supplierSection" class="mb-4"> <!-- Add an ID to this div for easier access -->
-                    <label for="supplier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier Produk</label>
-                    <select id="supplier" name="supplier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected="">Pilih Supplier</option>
-                        <option value="-">-</option> <!-- Added default option for Out transactions -->
-                        <?php
-                        $SP = model('App\Models\SupplierModel')->findAll();
-                        foreach ($SP as $s) : ?>
-                            <option value="<?= $s['name']; ?>"><?= $s['name']; ?></option>
-                        <?php endforeach; ?>
+            <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
+                <input type="hidden" id="id" name="id">
+                <input type="hidden" id="nama_barang" name="nama_barang">
+                <input type="hidden" id="harga_barang" name="harga_barang"> <!-- New Hidden Field for Harga Barang -->
+                <input type="hidden" id="jenis" name="jenis">
+                <div class="mb-4">
+                    <label for="jumlah" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Qty</label>
+                    <input type="number" id="jumlah" name="jumlah" oninput="calculateTotal()" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="harga_barang_display" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Harga Barang</label>
+                    <input type="text" id="harga_barang_display" name="harga_barang_display" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Harga Barang as readonly -->
+                </div>
+                <div class="mb-4">
+                    <label for="total_harga" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Total Harga</label>
+                    <input type="text" id="total_harga" name="total_harga" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Total Harga as readonly -->
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Admin</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="purpose" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Deskripsi</label>
+                    <input type="text" id="purpose" name="purpose" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <div id="supplierSection" class="mb-4"> <!-- Add an ID to this div for easier access -->
+                        <label for="supplier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier Produk</label>
+                        <select id="supplier" name="supplier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <?php
+                            $SP = model('App\Models\SupplierModel')->findAll();
+                            foreach ($SP as $s) : ?>
+                                <option value="<?= $s['name']; ?>"><?= $s['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="payment_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metode Pembayaran</label>
+                    <select id="payment_method" name="payment_method" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option selected="">Tentukan Metode</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Transfer">Transfer</option>
                     </select>
                 </div>
-            </div>
-            <div class="mb-4">
-                <label for="payment_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metode Pembayaran</label>
-                <select id="payment_method" name="payment_method" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected="">Tentukan Metode</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Transfer">Transfer</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="reference_number" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nomor Kwitansi</label>
-                <input type="text" id="reference_number" name="reference_number" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
-            <div>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Submit</button>
-                <button type="button" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ms-3" onclick="closeModal()">Cancel</button>
+                <div class="mb-4">
+                    <label for="reference_number" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nomor Kwitansi</label>
+                    <input type="text" id="reference_number" name="reference_number" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <div>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Submit</button>
+                    <button type="button" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ms-3" onclick="closeModal()">Cancel</button>
+                </div>
             </div>
         </form>
     </div>

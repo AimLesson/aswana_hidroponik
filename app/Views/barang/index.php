@@ -38,8 +38,8 @@
         <th scope="col" class="px-6 py-3">Nama Barang</th>
         <th scope="col" class="px-6 py-3">Harga Beli</th>
         <th scope="col" class="px-6 py-3">Harga Jual</th>
-        <th scope="col" class="px-6 py-3">Satuan</th>
         <th scope="col" class="px-6 py-3">Stok Produk</th>
+        <th scope="col" class="px-6 py-3">Stok Minimum</th>
         <th scope="col" class="px-6 py-3">Satuan Produk</th>
         <th scope="col" class="px-6 py-3">Gambar Produk</th>
         <th scope="col" class="px-6 py-3">Status Produk</th>
@@ -61,9 +61,9 @@
           <td class="px-6 py-4"><?= $item['nama_barang'] ?></td>
           <td class="px-6 py-4"><?= $item['harga_beli'] ?></td>
           <td class="px-6 py-4"><?= $item['harga_jual'] ?></td>
+          <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
+          <td class="px-6 py-4"><?= $item['stok_min'] ?></td>
           <td class="px-6 py-4"><?= $item['satuan'] ?></td>
-          <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
-          <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
           <td class="px-6 py-4">
             <img src="<?= base_url('uploads/' . $item['gambar_produk']) ?>" alt="<?= $item['nama_barang'] ?>" class="w-20 h-20 object-cover">
           </td>

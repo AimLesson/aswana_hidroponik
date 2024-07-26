@@ -59,8 +59,8 @@ public function index()
             $new_stock = $barang['stok_produk'] + $jumlah;
         } elseif ($jenis == 'out') {
             $new_stock = $barang['stok_produk'] - $jumlah;
-            if ($new_stock < 0) {
-                return redirect()->back()->with('error', 'Not enough stok_produk.');
+            if ($new_stock < $barang['stok_min']) {
+                return redirect()->back()->with('error', 'Stock Produk Kurang.');
             }
         }
 
