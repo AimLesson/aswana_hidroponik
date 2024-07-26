@@ -11,7 +11,6 @@ class Barang extends Controller
     {
         $model = new BarangModel();
         $data['barang'] = $model->findAll();
-        
         echo view('barang/index', $data);
     }
 
@@ -31,6 +30,7 @@ class Barang extends Controller
             'harga_beli' => 'required|decimal',
             'harga_jual' => 'required|decimal',
             'stok_produk' => 'required|integer',
+            'satuan' => 'required',
             'gambar_produk' => 'uploaded[gambar_produk]|max_size[gambar_produk,1024]|is_image[gambar_produk]|mime_in[gambar_produk,image/jpg,image/jpeg,image/png]',
             'status_produk' => 'required',
         ]);
@@ -54,6 +54,7 @@ class Barang extends Controller
                 'harga_beli' => $this->request->getPost('harga_beli'),
                 'harga_jual' => $this->request->getPost('harga_jual'),
                 'stok_produk' => $this->request->getPost('stok_produk'),
+                'satuan' => $this->request->getPost('satuan'),
                 'gambar_produk' => $newName,
                 'status_produk' => $this->request->getPost('status_produk'),
             ];
@@ -90,6 +91,7 @@ class Barang extends Controller
             'harga_beli' => 'required|decimal',
             'harga_jual' => 'required|decimal',
             'stok_produk' => 'required|integer',
+            'satuan' => 'required',
             'gambar_produk' => 'max_size[gambar_produk,1024]|is_image[gambar_produk]|mime_in[gambar_produk,image/jpg,image/jpeg,image/png]',
             'status_produk' => 'required',
         ]);
@@ -106,6 +108,7 @@ class Barang extends Controller
             'harga_beli' => $this->request->getPost('harga_beli'),
             'harga_jual' => $this->request->getPost('harga_jual'),
             'stok_produk' => $this->request->getPost('stok_produk'),
+            'satuan' => $this->request->getPost('satuan'),
             'status_produk' => $this->request->getPost('status_produk'),
         ];
 

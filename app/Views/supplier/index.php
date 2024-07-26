@@ -36,6 +36,7 @@
           <th scope="col" class="px-6 py-3">Alamat</th>
           <th scope="col" class="px-6 py-3">No. Telp / HP</th>
           <th scope="col" class="px-6 py-3">Perusahaan</th>
+          <th scope="col" class="px-6 py-3">No. Rekening</th>
           <th scope="col" class="px-6 py-3">Action</th>
         </tr>
       </thead>
@@ -47,6 +48,7 @@
             <td class="px-6 py-4"><?= $supplier['address'] ?></td>
             <td class="px-6 py-4"><?= $supplier['phone'] ?></td>
             <td class="px-6 py-4"><?= $supplier['company'] ?></td>
+            <td class="px-6 py-4"><?= $supplier['rekening'] ?></td>
             <td class="flex items-center px-6 py-4">
               <a href="<?= base_url('supplier/edit/' . $supplier['id']) ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
               <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3" onclick="confirmDelete('<?= $supplier['id'] ?>')">Remove</a>

@@ -57,6 +57,15 @@
                     <label for="stok_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok Produk</label>
                     <input type="number" name="stok_produk" id="stok_produk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                 </div>
+                <div>
+                    <label for="satuan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satuan Produk</label>
+                    <select id="satuan" name="satuan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option selected="">Pilih Satuan</option>
+                        <option value="Pcs">Pcs</option>
+                        <option value="Liter">Slab</option>
+                        <option value="Liter">Liter</option>
+                    </select>
+                </div>
                 <div class="w-full">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Gambar Produk</label>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="gambar_produk" id="gambar_produk" type="file">
@@ -64,7 +73,7 @@
                 <div>
                     <label for="status_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Produk</label>
                     <select id="status_produk" name="status_produk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected="">Select category</option>
+                        <option selected="">Tentukan Status</option>
                         <option value="Tersedia">Tersedia</option>
                         <option value="Tidak Tersedia">Tidak Tersedia</option>
                     </select>

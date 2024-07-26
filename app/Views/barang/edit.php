@@ -53,16 +53,24 @@
                     <input type="number" name="stok_produk" id="stok_produk" value="<?= $barang['stok_produk'] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                 </div>
                 <div class="w-full">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gambar_produk">Gambar Produk</label>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="gambar_produk" id="gambar_produk" type="file">
-                    <img src="<?= base_url('uploads/' . $barang['gambar_produk']) ?>" alt="Current Image" class="mt-2 w-24 h-24 object-cover">
+                    <label for="satuan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Produk</label>
+                    <select name="satuan" id="satuan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <option value="Pcs" <?= $barang['satuan'] == 'Pcs' ? 'selected' : '' ?>>Pcs</option>
+                        <option value="Slab" <?= $barang['satuan'] == 'Slab' ? 'selected' : '' ?>>Slab</option>
+                        <option value="Liter" <?= $barang['satuan'] == 'Liter' ? 'selected' : '' ?>>Liter</option>
+                    </select>
                 </div>
                 <div class="w-full">
                     <label for="status_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Produk</label>
                     <select name="status_produk" id="status_produk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                        <option value="available" <?= $barang['status_produk'] == 'available' ? 'selected' : '' ?>>Available</option>
-                        <option value="unavailable" <?= $barang['status_produk'] == 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
+                        <option value="Tersedia" <?= $barang['status_produk'] == 'Tersedia' ? 'selected' : '' ?>>Tersedia</option>
+                        <option value="Tidak Tersedia" <?= $barang['status_produk'] == 'Tidak Tersedia' ? 'selected' : '' ?>>Tidak Tersedia</option>
                     </select>
+                </div>
+                <div class="w-full">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gambar_produk">Gambar Produk</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="gambar_produk" id="gambar_produk" type="file">
+                    <img src="<?= base_url('uploads/' . $barang['gambar_produk']) ?>" alt="Current Image" class="mt-2 w-24 h-24 object-cover">
                 </div>
             </div>
             <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black border bg-primary-600 rounded-lg focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 hover:bg-primary-700">

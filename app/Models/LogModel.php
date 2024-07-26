@@ -8,5 +8,5 @@ class LogModel extends Model
 {
     protected $table = 'log';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['kode_barang','nama_barang', 'jumlah', 'jenis', 'name', 'purpose', 'reference_number', 'timestamp'];
+    protected $allowedFields = ['kode_barang','nama_barang', 'jumlah', 'jenis', 'name', 'purpose', 'reference_number','payment_method','total_harga', 'timestamp'];
 }

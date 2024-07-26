@@ -8,5 +8,5 @@ class SupplierModel extends Model
 {
     protected $table = 'suppliers'; // Name of the table
     protected $primaryKey = 'id'; // Primary key
-    protected $allowedFields = ['name', 'address', 'phone', 'company']; // Fields that can be inserted/updated
+    protected $allowedFields = ['name', 'address', 'phone','rekening', 'company']; // Fields that can be inserted/updated
 }

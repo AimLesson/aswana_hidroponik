@@ -26,6 +26,7 @@ class SupplierController extends Controller
             'name' => $this->request->getPost('name'),
             'address' => $this->request->getPost('address'),
             'phone' => $this->request->getPost('phone'),
+            'rekening' => $this->request->getPost('rekening'),
             'company' => $this->request->getPost('company')
         ];
         $model->save($data);
@@ -47,6 +48,7 @@ class SupplierController extends Controller
             'name' => $this->request->getPost('name'),
             'address' => $this->request->getPost('address'),
             'phone' => $this->request->getPost('phone'),
+            'rekening' => $this->request->getPost('rekening'),
             'company' => $this->request->getPost('company')
         ];
         $model->update($id, $data);

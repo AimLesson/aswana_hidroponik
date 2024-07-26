@@ -50,6 +50,10 @@
             <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Telp / HP</label>
             <input type="text" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="+62" required="">
           </div>
+          <div class="w-full">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.Rekening</label>
+            <input type="text" name="rekening" id="rekening" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required="">
+          </div>
           <div>
             <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Perusahaan</label>
             <input type="text" name="company" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Perusahaan" required="">
