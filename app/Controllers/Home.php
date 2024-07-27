@@ -8,6 +8,18 @@ class Home extends BaseController
     {
         return view('admin/home');
     }
+    public function landing(): string
+    {
+        return view('landing');
+    }
+    public function produk(): string
+    {
+        return view('product');
+    }
+    public function aboutus(): string
+    {
+        return view('aboutus');
+    }
 
     public function report(): string
     {

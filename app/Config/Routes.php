@@ -18,7 +18,10 @@ $routes->group('admin', ['filter' => 'group:admin,superadmin'], static function 
 });
 
 // Home routes
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::landing');
+$routes->get('/product', 'Home::produk');
+$routes->get('/aboutus', 'Home::aboutus');
+$routes->get('/admin', 'Home::index');
 $routes->get('/laporan', 'Home::report');
 $routes->get('/transaksi', 'TransaksiController::index');
 $routes->get('/supplier', 'SupplierController::index');
