@@ -9,7 +9,7 @@
         <li class="inline-flex items-center">
             <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                 <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
                 Home
             </a>
@@ -17,7 +17,7 @@
         <li>
             <div class="flex items-center">
                 <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
                 <a href="/transaksi" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Transaksi Barang</a>
             </div>
@@ -66,8 +66,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($log as $item): ?>
-                    <?php if ($item['jenis'] == 'in'): ?>
+                <?php foreach ($log as $item) : ?>
+                    <?php if ($item['jenis'] == 'in') : ?>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4 whitespace-nowrap">TR-<?= $item['id'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['name'] ?></td>
@@ -108,8 +108,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($log as $item): ?>
-                    <?php if ($item['jenis'] == 'out'): ?>
+                <?php foreach ($log as $item) : ?>
+                    <?php if ($item['jenis'] == 'out') : ?>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4 whitespace-nowrap">TR-<?= $item['id'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['name'] ?></td>
@@ -133,60 +133,59 @@
 
 <!-- Edit Modal -->
 <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-5xl">
         <h2 class="text-lg font-semibold mb-4">Edit Transaction</h2>
-        <form id="editForm" method="POST" action="/transaksi/update">
-            <input type="hidden" id="edit-id" name="id">
-            <div class="mb-4">
-                <label for="edit-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Admin</label>
-                <input type="text" id="edit-name" name="name" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-purpose" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Keterangan</label>
-                <textarea id="edit-purpose" name="purpose" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
-            </div>
-            <div class="mb-4">
-                <label for="edit-jenis" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Jenis Transaksi</label>
-                <select id="edit-jenis" name="jenis" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    <option value="in">Barang Masuk</option>
-                    <option value="out">Barang Keluar</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="edit-kode_barang" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Kode Barang</label>
-                <input type="text" id="edit-kode_barang" name="kode_barang" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-nama_barang" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Barang</label>
-                <input type="text" id="edit-nama_barang" name="nama_barang" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-jumlah" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Jumlah Qty</label>
-                <input type="number" id="edit-jumlah" name="jumlah" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-total_harga" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Total Biaya</label>
-                <input type="number" id="edit-total_harga" name="total_harga" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-reference_number" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nomor Kwitansi</label>
-                <input type="text" id="edit-reference_number" name="reference_number" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="edit-payment_method" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Metode Pembayaran</label>
-                <select id="edit-payment_method" name="payment_method" class="mt-1 block w-full bg-gray-50 border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    <option value="cash">Cash</option>
-                    <option value="transfer">Transfer</option>
-                    <option value="credit">Credit</option>
-                </select>
-            </div>
-            <div class="flex justify-end">
-                <button type="button" class="text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white mr-3" onclick="closeEditModal()">Cancel</button>
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Save Changes</button>
+        <form id="editForm">
+            <div class="grid gap-4 sm:grid-cols-4 sm:gap-6">
+                <input type="hidden" id="edit-id">
+                <div class="mb-4">
+                    <label for="edit-name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Admin</label>
+                    <input type="text" id="edit-name" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-purpose" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Keterangan</label>
+                    <input type="text" id="edit-purpose" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-jenis" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Jenis Transaksi</label>
+                    <select id="edit-jenis" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                        <option value="in">Barang Masuk</option>
+                        <option value="out">Barang Keluar</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-kode_barang" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Kode Barang</label>
+                    <input type="text" id="edit-kode_barang" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-nama_barang" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Barang</label>
+                    <input type="text" id="edit-nama_barang" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-jumlah" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Jumlah Qty</label>
+                    <input type="number" id="edit-jumlah" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-total_harga" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Total Biaya</label>
+                    <input type="text" id="edit-total_harga" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-reference_number" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nomor Kwitansi</label>
+                    <input type="text" id="edit-reference_number" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="mb-4">
+                    <label for="edit-payment_method" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Metode Pembayaran</label>
+                    <input type="text" id="edit-payment_method" class="block w-full mt-1 border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400">
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button type="button" class="text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white mr-3" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Save Changes</button>
+                </div>
             </div>
         </form>
     </div>
 </div>
+
 
 <!-- Confirmation Modal -->
 <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
@@ -214,11 +213,9 @@
 
     // Function to open the edit modal
     function openEditModal(id) {
-        // Fetch transaction data using AJAX
-        fetch('/transaksi/get/' + id)
+        fetch('/report/get/' + id)
             .then(response => response.json())
             .then(data => {
-                // Populate modal with fetched data
                 document.getElementById('edit-id').value = data.id;
                 document.getElementById('edit-name').value = data.name;
                 document.getElementById('edit-purpose').value = data.purpose;
@@ -229,8 +226,6 @@
                 document.getElementById('edit-total_harga').value = data.total_harga;
                 document.getElementById('edit-reference_number').value = data.reference_number;
                 document.getElementById('edit-payment_method').value = data.payment_method;
-
-                // Show modal
                 document.getElementById('editModal').classList.remove('hidden');
             });
     }
@@ -239,6 +234,45 @@
     function closeEditModal() {
         document.getElementById('editModal').classList.add('hidden');
     }
+
+    // Handle form submission to save edited transaction
+    document.getElementById('editForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const id = document.getElementById('edit-id').value;
+        const data = {
+            name: document.getElementById('edit-name').value,
+            purpose: document.getElementById('edit-purpose').value,
+            jenis: document.getElementById('edit-jenis').value,
+            kode_barang: document.getElementById('edit-kode_barang').value,
+            nama_barang: document.getElementById('edit-nama_barang').value,
+            jumlah: document.getElementById('edit-jumlah').value,
+            total_harga: document.getElementById('edit-total_harga').value,
+            reference_number: document.getElementById('edit-reference_number').value,
+            payment_method: document.getElementById('edit-payment_method').value,
+        };
+
+        fetch('/report/update/' + id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    closeEditModal(); // Close the modal on success
+                    location.reload(); // Reload the page to reflect changes
+                } else {
+                    alert('Error updating transaction');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Error updating transaction');
+            });
+    });
 
     // Function to confirm delete
     function confirmDelete(id) {
@@ -253,18 +287,29 @@
 
     // Function to delete a transaction
     function deleteTransaction(id) {
-        fetch('/transaksi/delete/' + id, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle success or error
-            if (data.success) {
-                location.reload(); // Reload the page
-            } else {
+        console.log('Attempting to delete transaction with id:', id); // Log the attempt
+        fetch('/report/delete/' + id, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                console.log('Response received:', response); // Log the response object
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data); // Log the JSON data
+                // Handle success or error
+                if (data.success) {
+                    console.log('Transaction deleted successfully');
+                    location.reload(); // Reload the page
+                } else {
+                    console.error('Error deleting transaction');
+                    alert('Error deleting transaction');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error); // Log any fetch errors
                 alert('Error deleting transaction');
-            }
-        });
+            });
     }
 
     // Set default tab

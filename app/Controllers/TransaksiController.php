@@ -8,13 +8,13 @@ use CodeIgniter\Controller;
 
 class TransaksiController extends Controller
 {
-public function index()
-{
-    $barangModel = new BarangModel();
-    $data['barang'] = $barangModel->where('status_produk', 'Tersedia')->findAll();
+    public function index()
+    {
+        $barangModel = new BarangModel();
+        $data['barang'] = $barangModel->where('status_produk', 'Tersedia')->findAll();
 
-    echo view('transaksi/index', $data);
-}
+        echo view('transaksi/index', $data);
+    }
 
 
     public function processTransaction()
@@ -93,36 +93,35 @@ public function index()
         $logModel = new LogModel();
         $transaction = $logModel->find($id);
 
-        return $this->response->setJSON($transaction);
+        if ($transaction) {
+            return $this->response->setJSON($transaction);
+        } else {
+            return $this->response->setStatusCode(404)->setJSON(['error' => 'Transaction not found']);
+        }
     }
 
-    public function update()
+    public function update($id)
     {
         $logModel = new LogModel();
-
-        $id = $this->request->getPost('id');
-        $data = [
-            'name' => $this->request->getPost('name'),
-            'purpose' => $this->request->getPost('purpose'),
-            'jenis' => $this->request->getPost('jenis'),
-            'kode_barang' => $this->request->getPost('kode_barang'),
-            'nama_barang' => $this->request->getPost('nama_barang'),
-            'jumlah' => $this->request->getPost('jumlah'),
-            'total_harga' => $this->request->getPost('total_harga'),
-            'reference_number' => $this->request->getPost('reference_number'),
-            'payment_method' => $this->request->getPost('payment_method'),
-        ];
-
-        $logModel->update($id, $data);
-
-        return redirect()->to('/transaksi');
+    
+        $data = $this->request->getJSON(true);  // Fetch data as JSON and convert it to an array
+    
+        $updateSuccess = $logModel->update($id, $data);
+    
+        return $this->response->setJSON(['success' => $updateSuccess]);
     }
+    
+    
 
     public function delete($id)
     {
-        $logModel = new LogModel();
-        $logModel->delete($id);
+        $logModel = new \App\Models\LogModel();
+        $result = $logModel->delete($id);
 
-        return $this->response->setJSON(['success' => true]);
+        if ($result) {
+            return $this->response->setJSON(['success' => true]);
+        } else {
+            return $this->response->setJSON(['success' => false]);
+        }
     }
 }
