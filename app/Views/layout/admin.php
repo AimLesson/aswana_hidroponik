@@ -30,7 +30,14 @@
 
     <script>
         $(document).ready(function() {
-            $('#tb_report').DataTable({
+            $('#tb_report_in').DataTable({
+                paging: false,
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+            $('#tb_report_out').DataTable({
                 paging: false,
                 dom: 'Bfrtip',
                 buttons: [

@@ -29,7 +29,7 @@
                 <th scope="col" class="px-6 py-3">Kode Barang</th>
                 <th scope="col" class="px-6 py-3">Nama Barang</th>
                 <th scope="col" class="px-6 py-3">Harga Beli</th>
-                <th scope="col" class="px-6 py-3">Harga Jual</th> <!-- Added Harga Barang column -->
+                <th scope="col" class="px-6 py-3">Harga Jual</th>
                 <th scope="col" class="px-6 py-3">Stock Barang</th>
                 <th scope="col" class="px-6 py-3">Stock Minimum</th>
                 <th scope="col" class="px-6 py-3">Actions</th>
@@ -40,8 +40,8 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4">BR-<?= $item['id'] ?></td>
                     <td class="px-6 py-4"><?= $item['nama_barang'] ?></td>
-                    <td class="px-6 py-4"><?= number_format($item['harga_beli'], 0, ',', '.') ?></td> <!-- Display Harga Beli -->
-                    <td class="px-6 py-4"><?= number_format($item['harga_jual'], 0, ',', '.') ?></td> <!-- Display Harga Beli -->
+                    <td class="px-6 py-4"><?= number_format($item['harga_beli'], 0, ',', '.') ?></td>
+                    <td class="px-6 py-4"><?= number_format($item['harga_jual'], 0, ',', '.') ?></td>
                     <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
                     <td class="px-6 py-4"><?= $item['stok_min'] ?></td>
                     <td class="flex items-center px-6 py-4">
@@ -63,41 +63,39 @@
             <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
                 <input type="hidden" id="id" name="id">
                 <input type="hidden" id="nama_barang" name="nama_barang">
-                <input type="hidden" id="harga_barang" name="harga_barang"> <!-- New Hidden Field for Harga Barang -->
+                <input type="hidden" id="harga_barang" name="harga_barang">
                 <input type="hidden" id="jenis" name="jenis">
-                <div class="mb-4">
+                <div id="quantitySection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="jumlah" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Qty</label>
                     <input type="number" id="jumlah" name="jumlah" oninput="calculateTotal()" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div class="mb-4">
+                <div id="hargaSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="harga_barang_display" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Harga Barang</label>
-                    <input type="text" id="harga_barang_display" name="harga_barang_display" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Harga Barang as readonly -->
+                    <input type="text" id="harga_barang_display" name="harga_barang_display" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div class="mb-4">
+                <div id="totalSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="total_harga" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Total Harga</label>
-                    <input type="text" id="total_harga" name="total_harga" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"> <!-- Display Total Harga as readonly -->
+                    <input type="text" id="total_harga" name="total_harga" readonly class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div class="mb-4">
+                <div id="adminSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Admin</label>
                     <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div class="mb-4">
+                <div id="descriptionSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="purpose" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Deskripsi</label>
                     <input type="text" id="purpose" name="purpose" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div class="mb-4">
-                    <div id="supplierSection" class="mb-4"> <!-- Add an ID to this div for easier access -->
-                        <label for="supplier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier Produk</label>
-                        <select id="supplier" name="supplier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <?php
-                            $SP = model('App\Models\SupplierModel')->findAll();
-                            foreach ($SP as $s) : ?>
-                                <option value="<?= $s['name']; ?>"><?= $s['name']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+                <div id="supplierSection" class="mb-4">
+                    <label for="supplier" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier Produk</label>
+                    <select id="supplier" name="supplier" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <?php
+                        $SP = model('App\Models\SupplierModel')->findAll();
+                        foreach ($SP as $s) : ?>
+                            <option value="<?= $s['name']; ?>"><?= $s['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-                <div class="mb-4">
+                <div id="paymentSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="payment_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metode Pembayaran</label>
                     <select id="payment_method" name="payment_method" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option selected="">Tentukan Metode</option>
@@ -105,7 +103,7 @@
                         <option value="Transfer">Transfer</option>
                     </select>
                 </div>
-                <div class="mb-4">
+                <div id="referenceSection" class="mb-4"> <!-- Added id for easier manipulation -->
                     <label for="reference_number" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Nomor Kwitansi</label>
                     <input type="text" id="reference_number" name="reference_number" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
@@ -123,22 +121,35 @@
         document.getElementById('jenis').value = type;
         document.getElementById('id').value = id;
         document.getElementById('nama_barang').value = nama_barang;
-        const harga_barang = type === 'in' ? harga_beli : harga_jual; // Set harga_barang based on type
-        document.getElementById('harga_barang').value = harga_barang; // Set hidden input
-        document.getElementById('harga_barang_display').value = formatRupiah(harga_barang.toString(), 'Rp. '); // Display formatted harga_barang
-        document.getElementById('total_harga').value = ''; // Clear total harga
+        const harga_barang = type === 'in' ? harga_beli : harga_jual;
+        document.getElementById('harga_barang').value = harga_barang;
+        document.getElementById('harga_barang_display').value = formatRupiah(harga_barang.toString(), 'Rp. ');
+
+        // Clear total harga and quantity
+        document.getElementById('total_harga').value = ''; 
+        document.getElementById('jumlah').value = '';
+
         document.getElementById('modalTitle').innerText = type === 'in' ? 'Barang Masuk' : 'Barang Keluar';
 
-        // Get the supplier section and supplier dropdown
+        // Get the relevant sections for manipulation
         const supplierSection = document.getElementById('supplierSection');
-        const supplierSelect = document.getElementById('supplier');
+        const hargaSection = document.getElementById('hargaSection');
+        const totalSection = document.getElementById('totalSection');
+        const paymentSection = document.getElementById('paymentSection');
+        const referenceSection = document.getElementById('referenceSection');
 
         if (type === 'out') {
-            supplierSection.classList.add('hidden'); // Hide the supplier section
-            supplierSelect.value = '-'; // Set the supplier value to "-"
+            supplierSection.classList.add('hidden'); // Hide supplier section
+            hargaSection.classList.add('hidden'); // Hide harga section
+            totalSection.classList.add('hidden'); // Hide total section
+            paymentSection.classList.add('hidden'); // Hide payment section
+            referenceSection.classList.add('hidden'); // Hide reference section
         } else {
-            supplierSection.classList.remove('hidden'); // Show the supplier section
-            supplierSelect.value = ''; // Reset the supplier value
+            supplierSection.classList.remove('hidden'); // Show supplier section
+            hargaSection.classList.remove('hidden'); // Show harga section
+            totalSection.classList.remove('hidden'); // Show total section
+            paymentSection.classList.remove('hidden'); // Show payment section
+            referenceSection.classList.remove('hidden'); // Show reference section
         }
 
         document.getElementById('transactionModal').classList.remove('hidden');

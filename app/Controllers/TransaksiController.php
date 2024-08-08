@@ -87,4 +87,42 @@ public function index()
         session()->setFlashdata('success', 'Transaksi Berhasil!');
         return redirect()->to('/transaksi');
     }
+
+    public function getTransaction($id)
+    {
+        $logModel = new LogModel();
+        $transaction = $logModel->find($id);
+
+        return $this->response->setJSON($transaction);
+    }
+
+    public function update()
+    {
+        $logModel = new LogModel();
+
+        $id = $this->request->getPost('id');
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'purpose' => $this->request->getPost('purpose'),
+            'jenis' => $this->request->getPost('jenis'),
+            'kode_barang' => $this->request->getPost('kode_barang'),
+            'nama_barang' => $this->request->getPost('nama_barang'),
+            'jumlah' => $this->request->getPost('jumlah'),
+            'total_harga' => $this->request->getPost('total_harga'),
+            'reference_number' => $this->request->getPost('reference_number'),
+            'payment_method' => $this->request->getPost('payment_method'),
+        ];
+
+        $logModel->update($id, $data);
+
+        return redirect()->to('/transaksi');
+    }
+
+    public function delete($id)
+    {
+        $logModel = new LogModel();
+        $logModel->delete($id);
+
+        return $this->response->setJSON(['success' => true]);
+    }
 }

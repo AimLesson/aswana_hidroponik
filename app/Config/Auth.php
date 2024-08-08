@@ -492,6 +492,19 @@ class Auth extends ShieldAuth
      */
     public function groupDeniedRedirect(): string
     {
+        // Check if the previous URL is stored in the session
+        $session = session();
+        $previousUrl = $session->get('previous_url');
+
+        if ($previousUrl) {
+            // Clear the session variable after using it
+            $session->remove('previous_url');
+
+            // Redirect to the previous URL
+            return redirect()->to($previousUrl);
+        }
+
+        // Default group denied URL from settings
         $url = setting('Auth.redirects')['group_denied'];
 
         return $this->getUrl($url);
@@ -503,10 +516,9 @@ class Auth extends ShieldAuth
      * full path.
      *
      * @param string $url an absolute URL or a named route or just URI path
-     */
-    protected function getUrl(string $url): string
+     */    protected function getUrl(string $url): string
     {
-        // To accommodate all url patterns
+        // To accommodate all URL patterns
         $final_url = '';
 
         switch (true) {

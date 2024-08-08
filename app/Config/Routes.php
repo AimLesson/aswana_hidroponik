@@ -50,6 +50,9 @@ $routes->group('barang', ['filter' => 'group:superadmin'], static function ($rou
 $routes->group('transaksi', ['filter' => 'group:admin,superadmin'], static function ($routes) {
     $routes->get('/', 'TransaksiController::index'); // Default route to TransaksiController index method
     $routes->post('processTransaction', 'TransaksiController::processTransaction'); // Route to handle the transaction form submission
+    $routes->get('/transaksi/get/(:num)', 'TransaksiController::getTransaction/$1');
+$routes->post('/transaksi/update', 'TransaksiController::update');
+$routes->delete('/transaksi/delete/(:num)', 'TransaksiController::delete/$1');
 });
 
 // Additional routes for authentication
