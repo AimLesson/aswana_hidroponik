@@ -32,25 +32,18 @@ $routes->get('/barang/create', 'Barang::create');
 $routes->post('/barang/store', 'Barang::store');
 
 // Supplier routes
-$routes->group('supplier', ['filter' => 'group:superadmin'], static function ($routes) {
-    $routes->get('edit/(:num)', 'SupplierController::edit/$1');
-    $routes->post('update/(:num)', 'SupplierController::update/$1');
-    $routes->get('delete/(:num)', 'SupplierController::delete/$1'); // Change this line to use GET method
-});
-
+$routes->get('supplier/edit/(:num)', 'SupplierController::edit/$1', ['filter' => 'group:superadmin']);
+$routes->post('supplier/update/(:num)', 'SupplierController::update/$1', ['filter' => 'group:superadmin']);
+$routes->get('supplier/delete/(:num)', 'SupplierController::delete/$1', ['filter' => 'group:superadmin']);
 
 // Barang routes
-$routes->group('barang', ['filter' => 'group:superadmin'], static function ($routes) {
-    $routes->get('edit/(:segment)', 'Barang::edit/$1');
-    $routes->post('update/(:segment)', 'Barang::update/$1');
-    $routes->get('delete/(:segment)', 'Barang::delete/$1');
-});
+$routes->get('barang/edit/(:segment)', 'Barang::edit/$1', ['filter' => 'group:superadmin']);
+$routes->post('barang/update/(:segment)', 'Barang::update/$1', ['filter' => 'group:superadmin']);
+$routes->get('barang/delete/(:segment)', 'Barang::delete/$1', ['filter' => 'group:superadmin']);
 
 // Transaksi routes
-$routes->group('transaksi', ['filter' => 'group:admin,superadmin'], static function ($routes) {
-    $routes->get('/', 'TransaksiController::index'); // Default route to TransaksiController index method
-    $routes->post('processTransaction', 'TransaksiController::processTransaction'); // Route to handle the transaction form submission
-});
+$routes->get('transaksi', 'TransaksiController::index', ['filter' => 'group:admin,superadmin']);
+$routes->post('transaksi/processTransaction', 'TransaksiController::processTransaction', ['filter' => 'group:admin,superadmin']);
 
 $routes->get('/report/get/(:num)', 'TransaksiController::getTransaction/$1');
 $routes->post('/report/update/(:num)', 'TransaksiController::update/$1');

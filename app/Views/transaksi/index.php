@@ -118,20 +118,22 @@
 
 <script>
     function openModal(type, id, nama_barang, harga_beli, harga_jual) {
+        console.log(id); // Debugging: Ensure the correct id is passed
+
         document.getElementById('jenis').value = type;
-        document.getElementById('id').value = id;
+        document.getElementById('id').value = id; // Correctly assigning the id
         document.getElementById('nama_barang').value = nama_barang;
         const harga_barang = type === 'in' ? harga_beli : harga_jual;
         document.getElementById('harga_barang').value = harga_barang;
         document.getElementById('harga_barang_display').value = formatRupiah(harga_barang.toString(), 'Rp. ');
 
         // Clear total harga and quantity
-        document.getElementById('total_harga').value = ''; 
+        document.getElementById('total_harga').value = '';
         document.getElementById('jumlah').value = '';
 
         document.getElementById('modalTitle').innerText = type === 'in' ? 'Barang Masuk' : 'Barang Keluar';
 
-        // Get the relevant sections for manipulation
+        // Toggle sections visibility based on type
         const supplierSection = document.getElementById('supplierSection');
         const hargaSection = document.getElementById('hargaSection');
         const totalSection = document.getElementById('totalSection');
@@ -139,21 +141,22 @@
         const referenceSection = document.getElementById('referenceSection');
 
         if (type === 'out') {
-            supplierSection.classList.add('hidden'); // Hide supplier section
-            hargaSection.classList.add('hidden'); // Hide harga section
-            totalSection.classList.add('hidden'); // Hide total section
-            paymentSection.classList.add('hidden'); // Hide payment section
-            referenceSection.classList.add('hidden'); // Hide reference section
+            supplierSection.classList.add('hidden');
+            hargaSection.classList.add('hidden');
+            totalSection.classList.add('hidden');
+            paymentSection.classList.add('hidden');
+            referenceSection.classList.add('hidden');
         } else {
-            supplierSection.classList.remove('hidden'); // Show supplier section
-            hargaSection.classList.remove('hidden'); // Show harga section
-            totalSection.classList.remove('hidden'); // Show total section
-            paymentSection.classList.remove('hidden'); // Show payment section
-            referenceSection.classList.remove('hidden'); // Show reference section
+            supplierSection.classList.remove('hidden');
+            hargaSection.classList.remove('hidden');
+            totalSection.classList.remove('hidden');
+            paymentSection.classList.remove('hidden');
+            referenceSection.classList.remove('hidden');
         }
 
         document.getElementById('transactionModal').classList.remove('hidden');
     }
+
 
     function closeModal() {
         document.getElementById('transactionModal').classList.add('hidden');

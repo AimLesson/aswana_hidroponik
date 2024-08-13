@@ -30,19 +30,20 @@
 
     <script>
         $(document).ready(function() {
-            $('#tb_report_in').DataTable({
-                paging: false,
+            $('#tb_report_in, #tb_report_out').DataTable({
                 dom: 'Bfrtip',
-                buttons: [
-                    'print'
-                ]
-            });
-            $('#tb_report_out').DataTable({
-                paging: false,
-                dom: 'Bfrtip',
-                buttons: [
-                    'print'
-                ]
+                buttons: [{
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column (Actions) from being printed
+                    }
+                }],
+                columnDefs: [{
+                    targets: -1, // Target the last column
+                    visible: true, // Keep it visible in the table
+                    searchable: false, // Disable search for the Actions column
+                    orderable: false // Disable ordering for the Actions column
+                }]
             });
             $('#tb_supplier').DataTable({
                 paging: false,
