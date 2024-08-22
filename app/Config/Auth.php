@@ -436,11 +436,10 @@ class Auth extends ShieldAuth
      */
     public function loginRedirect(): string
     {
-        $session = session();
-        $url     = $session->getTempdata('beforeLoginUrl') ?? setting('Auth.redirects')['login'];
-
-        return $this->getUrl($url);
+        // Redirect to '/admin' after login
+        return $this->getUrl('/admin');
     }
+    
 
     /**
      * Returns the URL that a user should be redirected
@@ -492,19 +491,6 @@ class Auth extends ShieldAuth
      */
     public function groupDeniedRedirect(): string
     {
-        // Check if the previous URL is stored in the session
-        $session = session();
-        $previousUrl = $session->get('previous_url');
-
-        if ($previousUrl) {
-            // Clear the session variable after using it
-            $session->remove('previous_url');
-
-            // Redirect to the previous URL
-            return redirect()->to($previousUrl);
-        }
-
-        // Default group denied URL from settings
         $url = setting('Auth.redirects')['group_denied'];
 
         return $this->getUrl($url);
@@ -531,7 +517,7 @@ class Auth extends ShieldAuth
                 break;
 
             default: // URL is a route (URI path)
-                $final_url = rtrim(site_url($url), '/ ');
+                $final_url = rtrim(site_url($url), '/admin');
                 break;
         }
 
