@@ -62,6 +62,7 @@
             <?= csrf_field() ?>
             <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
                 <input type="hidden" id="id" name="id">
+                <input type="hidden" id="kode_barang" name="kode_barang">
                 <input type="hidden" id="nama_barang" name="nama_barang">
                 <input type="hidden" id="harga_barang" name="harga_barang">
                 <input type="hidden" id="jenis" name="jenis">

@@ -32,22 +32,22 @@ $routes->get('/barang/create', 'Barang::create');
 $routes->post('/barang/store', 'Barang::store');
 
 // Supplier routes
-$routes->get('supplier/edit/(:num)', 'SupplierController::edit/$1', ['filter' => 'group:superadmin']);
+$routes->get('supplier/edit/(:num)', 'SupplierController::edit/$1', ['filter' => 'group:admin,superadmin']);
 $routes->post('supplier/update/(:num)', 'SupplierController::update/$1', ['filter' => 'group:superadmin']);
 $routes->get('supplier/delete/(:num)', 'SupplierController::delete/$1', ['filter' => 'group:superadmin']);
 
 // Barang routes
-$routes->get('barang/edit/(:segment)', 'Barang::edit/$1', ['filter' => 'group:superadmin']);
-$routes->post('barang/update/(:segment)', 'Barang::update/$1', ['filter' => 'group:superadmin']);
-$routes->get('barang/delete/(:segment)', 'Barang::delete/$1', ['filter' => 'group:superadmin']);
+$routes->get('barang/edit/(:segment)', 'Barang::edit/$1', ['filter' => 'group:admin,superadmin']);
+$routes->post('barang/update/(:segment)', 'Barang::update/$1', ['filter' => 'group:admin,superadmin']);
+$routes->get('barang/delete/(:segment)', 'Barang::delete/$1', ['filter' => 'group:admin,superadmin']);
 
 // Transaksi routes
 $routes->get('transaksi', 'TransaksiController::index', ['filter' => 'group:admin,superadmin']);
 $routes->post('transaksi/processTransaction', 'TransaksiController::processTransaction', ['filter' => 'group:admin,superadmin']);
 
-$routes->get('/report/get/(:num)', 'TransaksiController::getTransaction/$1');
-$routes->post('/report/update/(:num)', 'TransaksiController::update/$1');
-$routes->delete('/report/delete/(:num)', 'TransaksiController::delete/$1');
+$routes->get('/report/get/(:num)', 'TransaksiController::getTransaction/$1', ['filter' => 'group:admin,superadmin']);
+$routes->post('/report/update/(:num)', 'TransaksiController::update/$1', ['filter' => 'group:superadmin']);
+$routes->delete('/report/delete/(:num)', 'TransaksiController::delete/$1', ['filter' => 'group:superadmin']);
 
 
 // Additional routes for authentication

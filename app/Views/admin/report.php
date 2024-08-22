@@ -62,7 +62,9 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nomor Kwitansi</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Metode Pembayaran</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Waktu</th>
+                    <?php if (auth()->user()->inGroup('superadmin')): ?>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
+                    <?php endif;?>
                 </tr>
             </thead>
             <tbody>
@@ -80,10 +82,12 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['reference_number'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['payment_method'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['timestamp'] ?></td>
+                            <?php if (auth()->user()->inGroup('superadmin')): ?>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
                                 <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
                             </td>
+                            <?php endif;?>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -104,7 +108,9 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Barang</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jumlah Qty</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Waktu</th>
+                    <?php if (auth()->user()->inGroup('superadmin')): ?>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -119,10 +125,12 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['nama_barang'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['jumlah'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['timestamp'] ?></td>
+                            <?php if (auth()->user()->inGroup('superadmin')): ?>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
                                 <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
                             </td>
+                            <?php endif; ?>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
