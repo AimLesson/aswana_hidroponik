@@ -43,38 +43,47 @@
         <th scope="col" class="px-6 py-3">Satuan Produk</th>
         <th scope="col" class="px-6 py-3">Gambar Produk</th>
         <th scope="col" class="px-6 py-3">Status Produk</th>
+        <th scope="col" class="px-6 py-3">Status Stock</th>
         <th scope="col" class="px-6 py-3">Action</th>
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($barang as $item) : ?>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <td class="w-4 p-4">
-            <div class="flex items-center">
-              <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-            </div>
-          </td>
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <?= $item['kode_barang'] ?>
-          </th>
-          <td class="px-6 py-4"><?= $item['nama_barang'] ?></td>
-          <td class="px-6 py-4"><?= $item['harga_beli'] ?></td>
-          <td class="px-6 py-4"><?= $item['harga_jual'] ?></td>
-          <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
-          <td class="px-6 py-4"><?= $item['stok_min'] ?></td>
-          <td class="px-6 py-4"><?= $item['satuan'] ?></td>
-          <td class="px-6 py-4">
-            <img src="<?= base_url('uploads/' . $item['gambar_produk']) ?>" alt="<?= $item['nama_barang'] ?>" class="w-20 h-20 object-cover">
-          </td>
-          <td class="px-6 py-4"><?= $item['status_produk'] ?></td>
-          <td class="flex items-center px-6 py-4">
-            <a href="<?= base_url('barang/edit/' . $item['id']) ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3" onclick="confirmDelete('<?= $item['id'] ?>')">Remove</a>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
+  <?php foreach ($barang as $item) : ?>
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+      <td class="w-4 p-4">
+        <div class="flex items-center">
+          <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+        </div>
+      </td>
+      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <?= $item['kode_barang'] ?>
+      </th>
+      <td class="px-6 py-4"><?= $item['nama_barang'] ?></td>
+      <td class="px-6 py-4"><?= $item['harga_beli'] ?></td>
+      <td class="px-6 py-4"><?= $item['harga_jual'] ?></td>
+      <td class="px-6 py-4"><?= $item['stok_produk'] ?></td>
+      <td class="px-6 py-4"><?= $item['stok_min'] ?></td>
+      <td class="px-6 py-4"><?= $item['satuan'] ?></td>
+      <td class="px-6 py-4">
+        <img src="<?= base_url('uploads/' . $item['gambar_produk']) ?>" alt="<?= $item['nama_barang'] ?>" class="w-20 h-20 object-cover">
+      </td>
+      <td class="px-6 py-4"><?= $item['status_produk'] ?></td>
+      <td class="px-6 py-4">
+        <?php if ($item['stok_produk'] > $item['stok_min']) : ?>
+          <span class="text-green-600 font-bold">Cukup</span>
+        <?php else : ?>
+          <span class="text-red-600 font-bold">Kurang</span>
+        <?php endif; ?>
+      </td>
+      <td class="flex items-center justify-center mt-2 px-6 py-4">
+        <a href="<?= base_url('barang/edit/' . $item['id']) ?>" class="font-medium justify-center mt-6 text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        <a href="#" class="font-medium mt-6 text-red-600 dark:text-red-500 hover:underline justify-center ms-3" onclick="confirmDelete('<?= $item['id'] ?>')">Remove</a>
+      </td>
+    </tr>
+  <?php endforeach; ?>
+</tbody>
+
   </table>
 </div>
 
