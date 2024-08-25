@@ -7,12 +7,27 @@ use CodeIgniter\Controller;
 
 class Barang extends Controller
 {
-    public function index()
-    {
-        $model = new BarangModel();
-        $data['barang'] = $model->findAll();
-        echo view('barang/index', $data);
+    public function index() {
+        $barangModel = new \App\Models\BarangModel();
+        
+        // Get all items with "Kurang" status for debugging
+        $kurangItems = $barangModel->where('stok_produk < stok_min')->get()->getResultArray();
+        
+        // Log the retrieved items for debugging
+        log_message('info', 'Barang with "Kurang" status: ' . print_r($kurangItems, true));
+        
+        // Count the number of "Kurang" items
+        $kurangCount = count($kurangItems);
+    
+        $data = [
+            'barang' => $barangModel->findAll(),
+            'kurangCount' => $kurangCount,
+        ];
+        
+        return view('barang/index', $data);
     }
+    
+    
 
     public function create()
     {
