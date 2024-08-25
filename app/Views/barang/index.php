@@ -108,11 +108,11 @@ function confirmDelete(itemId) {
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     <?php if (isset($kurangCount) && $kurangCount > 0) : ?>
-      toastr.warning('There are <?= $kurangCount ?> barang with "Kurang" status.', 'Stock Alert!', {
+      toastr.warning('Ada <?= $kurangCount ?> jenis barang kurang dari jumlah minimal', 'Stock Alert!', {
         "closeButton": true,
         "progressBar": true,
         "positionClass": "toast-top-right",
-        "timeOut": "5000",
+        "timeOut": "10000",
       });
     <?php else: ?>
       console.log('No barang with Kurang status found.');
