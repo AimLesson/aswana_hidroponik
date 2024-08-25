@@ -55,7 +55,7 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Admin</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Keterangan</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jenis Transaksi</th>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Barang</th>
+                    <!-- <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Barang</th> -->
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Barang</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jumlah Qty</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Total Biaya</th>
@@ -75,7 +75,7 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['name'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['purpose'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap">Barang Masuk</td>
-                            <td class="px-6 py-4 whitespace-nowrap">BR-<?= $item['kode_barang'] ?></td>
+                            <!-- <td class="px-6 py-4 whitespace-nowrap">BR-<?= $item['kode_barang'] ?></td> -->
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['nama_barang'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['jumlah'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap">Rp <?= number_format($item['total_harga'], 0, ',', '.') ?></td>
@@ -104,7 +104,7 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Admin</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Keterangan</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jenis Transaksi</th>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Barang</th>
+                    <!-- <th scope="col" class="px-6 py-3 whitespace-nowrap">Kode Barang</th> -->
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Barang</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jumlah Qty</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Waktu</th>
@@ -121,7 +121,7 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['name'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['purpose'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap">Barang Keluar</td>
-                            <td class="px-6 py-4 whitespace-nowrap">BR-<?= $item['kode_barang'] ?></td>
+                            <!-- <td class="px-6 py-4 whitespace-nowrap">BR-<?= $item['kode_barang'] ?></td> -->
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['nama_barang'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['jumlah'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['timestamp'] ?></td>
