@@ -44,7 +44,9 @@
         <th scope="col" class="px-6 py-3">Gambar Produk</th>
         <th scope="col" class="px-6 py-3">Status Produk</th>
         <th scope="col" class="px-6 py-3">Status Stock</th>
+        <?php if (auth()->user()->inGroup('superadmin')): ?>
         <th scope="col" class="px-6 py-3">Action</th>
+        <?php endif;?>
       </tr>
     </thead>
     <tbody>
@@ -76,10 +78,12 @@
           <span class="text-red-600 font-bold">Kurang</span>
         <?php endif; ?>
       </td>
+      <?php if (auth()->user()->inGroup('superadmin')): ?>
       <td class="flex items-center justify-center mt-2 px-6 py-4">
         <a href="<?= base_url('barang/edit/' . $item['id']) ?>" class="font-medium justify-center mt-6 text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
         <a href="#" class="font-medium mt-6 text-red-600 dark:text-red-500 hover:underline justify-center ms-3" onclick="confirmDelete('<?= $item['id'] ?>')">Remove</a>
       </td>
+      <?php endif;?>
     </tr>
   <?php endforeach; ?>
 </tbody>
