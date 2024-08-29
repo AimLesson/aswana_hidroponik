@@ -25,7 +25,7 @@
     </ol>
 </nav>
 
-<div class="relative border overflow-x-auto shadow-md sm:rounded-lg p-3">
+<div class="relative border shadow-md sm:rounded-lg p-3">
     <!-- Tabs -->
     <div class="flex flex-col">
         <div class="sm:hidden">
@@ -62,9 +62,9 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nomor Kwitansi</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Metode Pembayaran</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Waktu</th>
-                    <?php if (auth()->user()->inGroup('superadmin')): ?>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
-                    <?php endif;?>
+                    <?php if (auth()->user()->inGroup('superadmin')) : ?>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -82,16 +82,24 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['reference_number'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['payment_method'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['timestamp'] ?></td>
-                            <?php if (auth()->user()->inGroup('superadmin')): ?>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
-                                <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
-                            </td>
-                            <?php endif;?>
+                            <?php if (auth()->user()->inGroup('superadmin')) : ?>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
+                                    <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
+            <!-- Add Footer for Total -->
+            <tfoot>
+                <tr>
+                    <th colspan="6" class="px-6 py-3 whitespace-nowrap text-right">Total:</th>
+                    <th id="total_biaya" class="px-6 py-3 whitespace-nowrap">Rp 0</th>
+                    <th colspan="4"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -108,8 +116,8 @@
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Nama Barang</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Jumlah Qty</th>
                     <th scope="col" class="px-6 py-3 whitespace-nowrap">Waktu</th>
-                    <?php if (auth()->user()->inGroup('superadmin')): ?>
-                    <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
+                    <?php if (auth()->user()->inGroup('superadmin')) : ?>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">Actions</th>
                     <?php endif; ?>
                 </tr>
             </thead>
@@ -125,11 +133,11 @@
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['nama_barang'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['jumlah'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= $item['timestamp'] ?></td>
-                            <?php if (auth()->user()->inGroup('superadmin')): ?>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
-                                <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
-                            </td>
+                            <?php if (auth()->user()->inGroup('superadmin')) : ?>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-blue-600 hover:text-blue-800" onclick="openEditModal(<?= $item['id'] ?>)">Edit</button>
+                                    <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(<?= $item['id'] ?>)">Delete</button>
+                                </td>
                             <?php endif; ?>
                         </tr>
                     <?php endif; ?>
@@ -137,6 +145,25 @@
             </tbody>
         </table>
     </div>
+
+
+    <label for="monthFilter" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Bulan</label>
+    <select id="monthFilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="">All</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
 </div>
 
 <!-- Edit Modal -->
