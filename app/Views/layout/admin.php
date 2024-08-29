@@ -45,7 +45,7 @@
                     },
                     customize: function(win) {
                         var selectedMonthText = $('#monthFilter option:selected').text(); // Get the selected month text
-                        var subtitle = selectedMonthText ? 'Data Bulan : ' + selectedMonthText : 'All Data';
+                        var subtitle = selectedMonthText ? 'Periode : ' + selectedMonthText : 'All Data';
 
                         // Calculate the total
                         var total = $('#tb_report_in').DataTable().column(6).data().reduce(function(a, b) {
@@ -120,7 +120,7 @@
                     },
                     customize: function(win) {
                         var selectedMonthText = $('#monthFilter option:selected').text(); // Get the selected month text
-                        var subtitle = selectedMonthText ? 'Data for ' + selectedMonthText : 'All Data';
+                        var subtitle = selectedMonthText ? 'Periode ' + selectedMonthText : 'All Data';
 
                         $(win.document.body)
                             .css('font-size', '12pt')
