@@ -143,6 +143,13 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="5" class="px-6 py-3 whitespace-nowrap text-right">Total Barang Keluar:</th>
+                    <th id="total_jumlah_out" class="px-6 py-3 whitespace-nowrap">0</th>
+                    <th colspan="2"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
