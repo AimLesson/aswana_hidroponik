@@ -72,7 +72,7 @@
                                 '<div class="me-5" style="flex: 2; text-align: center;">' +
                                 '<h2 style="margin: 0;">Aswana Hidroponik</h2>' +
                                 '<h2 style="margin: 0;">Laporan Pembelian Barang</h2>' +
-                                '<h4 style="margin: 0;">' + subtitle + ' - Total: Rp ' + totalIn.toLocaleString('id-ID') + '</h4>' +
+                                '<h4 style="margin: 0;">' + subtitle + '</h4>' +
                                 '</div>' +
                                 '</div>'
                             )
@@ -160,7 +160,7 @@
                                 '<div class="me-5" style="flex: 2; text-align: center;">' +
                                 '<h2 style="margin: 0;">Aswana Hidroponik</h2>' +
                                 '<h2 style="margin: 0;">Laporan Pengeluaran Barang</h2>' +
-                                '<h4 style="margin: 0;">' + subtitle + ' - Total Qty: ' + totalOut + '</h4>' +
+                                '<h4 style="margin: 0;">' + subtitle +'</h4>' +
                                 '</div>' +
                                 '</div>'
                             )
